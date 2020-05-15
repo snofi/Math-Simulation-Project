@@ -30,7 +30,7 @@ public class Simulation {
 	// A machine
 	Machine m = new Machine(q,si,l,"Machine 1");
 	// start the eventlist
-	l.start(50000); // 2000 is maximum time
+	l.start(1440); // 2000 is maximum time
     }
     
 }
