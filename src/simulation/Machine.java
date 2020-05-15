@@ -1,5 +1,7 @@
 package simulation;
 
+import java.util.Arrays;
+
 /**
  *	Machine in a factory
  *	@author Joel Karel
@@ -96,11 +98,19 @@ public class Machine implements CProcess,ProductAcceptor
 	public void execute(int type, double tme)
 	{
 		// show arrival
-		System.out.println("Product finished at time = " + tme);
+		// System.out.println("Product finished at time = " + tme);
+
+        // System.out.println(Arrays.toString(product.getTimesAsArray()));
+        // System.out.println(Arrays.toString(product.getEventsAsArray()));
+        // System.out.println(Arrays.toString(product.getStationsAsArray()));
+
 		// Remove product from system
 		product.stamp(tme,"Production complete",name);
-		sink.giveProduct(product);
-		product=null;
+
+        System.out.println(product.getTimes());
+
+        sink.giveProduct(product);
+        product=null;
 		// set machine status to idle
 		status='i';
 		// Ask the queue for products
