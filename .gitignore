@@ -1,4 +1,4 @@
 src/out/
-src/.idea/
 *.xml
 *.class
+.idea
