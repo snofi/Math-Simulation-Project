@@ -16,7 +16,7 @@ public class Machine implements CProcess,ProductAcceptor
 	/** Queue from which the machine has to take products */
 	private Queue queue;
 	/** Sink to dump products */
-	private ProductAcceptor sink;
+	private Sink sink;
 	/** Status of the machine (b=busy, i=idle) */
 	private char status;
 	/** Machine name */
@@ -37,7 +37,7 @@ public class Machine implements CProcess,ProductAcceptor
 	*	@param e	Eventlist that will manage events
 	*	@param n	The name of the machine
 	*/
-	public Machine(Queue q, ProductAcceptor s, CEventList e, String n)
+	public Machine(Queue q, Sink s, CEventList e, String n)
 	{
 		status='i';
 		queue=q;
@@ -57,7 +57,7 @@ public class Machine implements CProcess,ProductAcceptor
 	*	@param n	The name of the machine
 	*        @param m	Mean processing time
 	*/
-	public Machine(Queue q, ProductAcceptor s, CEventList e, String n, double m)
+	public Machine(Queue q, Sink s, CEventList e, String n, double m)
 	{
 		status='i';
 		queue=q;
@@ -77,7 +77,7 @@ public class Machine implements CProcess,ProductAcceptor
 	*	@param n	The name of the machine
 	*        @param st	service times
 	*/
-	public Machine(Queue q, ProductAcceptor s, CEventList e, String n, double[] st)
+	public Machine(Queue q, Sink s, CEventList e, String n, double[] st)
 	{
 		status='i';
 		queue=q;
@@ -97,24 +97,30 @@ public class Machine implements CProcess,ProductAcceptor
 	*/
 	public void execute(int type, double tme)
 	{
-		// show arrival
+		// show arrival (commented out from original code)
 		// System.out.println("Product finished at time = " + tme);
-
-        // System.out.println(Arrays.toString(product.getTimesAsArray()));
-        // System.out.println(Arrays.toString(product.getEventsAsArray()));
-        // System.out.println(Arrays.toString(product.getStationsAsArray()));
 
 		// Remove product from system
 		product.stamp(tme,"Production complete",name);
 
-        System.out.println(product.getTimes());
-
         sink.giveProduct(product);
+
+		// show all times (added - not in original code)
+		System.out.println(product.getTimes());
+
+		// if (tme >= 1414) {
+		//	System.out.println(sink.getProductTimes());
+		//}
+
+		System.out.println("Avg wait: " + sink.getAverageWaitTime());
+
         product=null;
 		// set machine status to idle
 		status='i';
 		// Ask the queue for products
 		queue.askProduct(this);
+
+
 	}
 	
 	/**
@@ -146,7 +152,7 @@ public class Machine implements CProcess,ProductAcceptor
 	*	Start the handling of the current product with an exponentionally distributed processingtime with average 30
 	*	This time is placed in the eventlist
 	*/
-	private void startProduction()
+	public void startProduction()
 	{
 		// generate duration
 		if(meanProcTime>0)

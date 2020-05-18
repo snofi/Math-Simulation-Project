@@ -1,6 +1,7 @@
 package simulation;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  *	Event processing mechanism
@@ -94,9 +95,14 @@ public class CEventList implements CProcess
 			currentTime=events.get(0).getExecutionTime();
 			// Let the element be processed
 			events.get(0).execute();
+
+			// Prints events (added - not in original code)
+			// System.out.println(Arrays.toString(events.toArray()));
+
 			// Remove the event from the list
 			events.remove(0);
 		}
+
 	}
 
 	public void stop()

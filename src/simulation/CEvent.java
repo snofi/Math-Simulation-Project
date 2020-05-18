@@ -44,4 +44,12 @@ public class CEvent
 	{
 		return executionTime;
 	}
+
+	@Override
+	public String toString() {
+		// return "Type: " + Integer.toString(type) + ", ExecutionTime: " +  Double.toString(executionTime);
+		return type + " " + executionTime;
+	}
+
+
 }

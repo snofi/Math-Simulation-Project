@@ -1,6 +1,8 @@
 package simulation;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+
 /**
  *	A sink
  *	@author Joel Karel
@@ -87,5 +89,36 @@ public class Sink implements ProductAcceptor
 		String[] tmp = new String[stations.size()];
 		tmp = stations.toArray(tmp);
 		return tmp;
+	}
+
+	public ArrayList<Product> getProducts() {return products;}
+
+	public ArrayList<ArrayList<Double>> getProductTimes() {
+		ArrayList<ArrayList<Double>> times = new ArrayList<>();
+
+		Product tmp = new Product();
+		for (int i = 0; i < products.size(); i++) {
+			tmp = products.get(i);
+			times.add(tmp.getTimes());
+		}
+
+		return times;
+	}
+
+	public double getAverageWaitTime() {
+		ArrayList<ArrayList<Double>> times = getProductTimes();
+		ArrayList<Double> waits = new ArrayList();
+
+		for (ArrayList<Double> tmpProduct : times){
+			waits.add(tmpProduct.get(1) - tmpProduct.get(0));
+		}
+
+		double mean = 0;
+		for (Double wait: waits){
+			mean += wait;
+		}
+		mean = mean/(waits.size());
+
+		return mean;
 	}
 }
