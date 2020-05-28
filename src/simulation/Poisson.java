@@ -50,21 +50,21 @@ public class Poisson {
         return (n);
     }
 
-    //        Time is in minutes (180 is min, 900 is max)
-    public int getConsumer(double currentTime) {
-//        calculating lambda based of sinusoid
+    // Time is in minutes (180 is min, 900 is max)
+    public static int getConsumer(double currentTime) {
+        // calculating lambda based of sinusoid
         double lambda = (1.8 * Math.sin(((currentTime / 60.0) + 15.0) / 3.82) + 2.0);
-//        rounding lambda to hundred thousandths place
+        // rounding lambda to hundred thousandths place
         lambda = Math.round(lambda * 100000);
         lambda = lambda / 100000;
-//        generating random from uniform [0,1]
+        // generating random from uniform [0,1]
         double u = Math.random();
         return icdf(lambda, u);
     }
 
-    public int getCorporate(double currentTime) {
-//        Between 8 am and 6 pm, rate is 1 per minute
-//        Between 6 pm and 8 am, rate is 0.2 per minute.
+    public static int getCorporate(double currentTime) {
+        // Between 8 am and 6 pm, rate is 1 per minute
+        // Between 6 pm and 8 am, rate is 0.2 per minute.
         double lambda;
         currentTime = currentTime / 60;
         if ((currentTime > 8) && (currentTime < 18)) {
@@ -74,6 +74,18 @@ public class Poisson {
         }
         double u = Math.random();
         return icdf(lambda, u);
+    }
+
+    public static double meanIATimeCorp(double currentTime) {
+        double lambda;
+        currentTime = currentTime / 60;
+        if ((currentTime > 8) && (currentTime < 18)) {
+            lambda = 1;
+        } else {
+            lambda = 0.2;
+        }
+
+        return 60/lambda;
     }
 
 }

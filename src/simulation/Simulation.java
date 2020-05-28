@@ -15,7 +15,7 @@ public class Simulation {
     public Machine mach;
 	
 
-        /**
+    /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
