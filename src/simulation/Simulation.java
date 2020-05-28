@@ -30,15 +30,18 @@ public class Simulation {
         Sink corporateSi = new Sink("Sink Corporate");
 
         // A source
-        Source consumerSource = new Source(conQ,l,"Consumer Source", 30);
-        Source corporateSourc1 = new Source(conQ,l,"Corporate1 Source", 60);
-        Source corporateSource2 = new Source(corpQcon,l,"Corporate2 Source", 300);
+        Source consumerSource = new Source(conQ, l,"Consumer Source");
+        Source corporateSourc1 = new Source(conQ, l,"Corporate1 Source");
+        Source corporateSource2 = new Source(corpQcon, l,"Corporate2 Source");
 
 
         // A machine
         Machine con1 = new Machine(conQ, consumerSi,l, "Consumer 1");
         Machine con2 = new Machine(conQ, consumerSi,l, "Consumer 2");
         Machine corp1 = new Machine(corpQcon,corporateSi,l,"Corporate 1");
+        Machine con4 = new Machine(conQ, consumerSi,l, "Consumer 1");
+        Machine con3 = new Machine(conQ, consumerSi,l, "Consumer 2");
+        Machine corp4 = new Machine(corpQcon,corporateSi,l,"Corporate 1");
         // start the eventlist
         l.start(1440); // 2000 is maximum time
     }
