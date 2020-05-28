@@ -113,7 +113,6 @@ public class Source implements CProcess {
         queue.giveProduct(p);
         // generate duration
         if (meanArrTime > 0) {
-            if (name.contains("Corporate")) num++;
             double duration = name.contains("Corporate") ?
                     drawRandomExponential(Poisson.meanIATimeCorp(list.getTime())) :
                     drawRandomExponential(Poisson.meanIATimeCust(list.getTime()));

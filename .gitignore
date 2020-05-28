@@ -1,5 +1,5 @@
 src/out/
-./.idea/
+.idea/
 *.xml
 *.class
 .DS_Store
