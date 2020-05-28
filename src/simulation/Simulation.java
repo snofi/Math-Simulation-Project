@@ -6,6 +6,8 @@
 
 package simulation;
 
+import java.util.ArrayList;
+
 public class Simulation {
 
     public CEventList list;
@@ -19,6 +21,10 @@ public class Simulation {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+
+        Poisson posse = new Poisson();
+        Normal normie = new Normal();
+
     	// Create an eventlist
         CEventList l = new CEventList();
         // A queue for the machine
@@ -30,6 +36,7 @@ public class Simulation {
         Sink corporateSi = new Sink("Sink Corporate");
 
         // A source
+
         Source consumerSource = new Source(conQ, l,"Consumer Source");
         Source corporateSourc1 = new Source(corpQ, l,"Corporate Source");
 

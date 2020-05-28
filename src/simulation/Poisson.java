@@ -95,6 +95,22 @@ public class Poisson {
 
         return 1/lambda;
     }
+    public static ArrayList<Double> getCorpArrivalList(double currentTime, double endTime) {
+        ArrayList<Double> list = new ArrayList<>();
+        while(currentTime< endTime ){
+            int corpPerMin = getCorporate(currentTime);
+//            System.out.println(corpPerMin);
+            for(int i=0; i<corpPerMin; i++) {
 
+                double newDuration = Source.drawRandomExponential(corpPerMin);
+                list.add(newDuration);
+//                System.out.println(newDuration);
+            }
+            if(corpPerMin==0){
+                currentTime+=1;
+            }
+        }
+        return list;
+    }
 }
 
