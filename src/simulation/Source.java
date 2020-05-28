@@ -66,7 +66,10 @@ public class Source implements CProcess {
         name = n;
         meanArrTime = m;
         // put first event in list for initialization
-        list.add(this, 0, drawRandomExponential(Poisson.meanIATimeCorp(list.getTime()))); //target,type,time
+        double arrivalTime = name.contains("Corporate") ?
+                drawRandomExponential(Poisson.meanIATimeCorp(list.getTime())) :
+                drawRandomExponential(Poisson.meanIATimeCust(list.getTime()));
+        list.add(this, 0, arrivalTime); //target,type,time
     }
 
     /**
