@@ -44,7 +44,6 @@ public class Machine implements CProcess, ProductAcceptor {
      */
     private int procCnt;
 
-
     /**
      * Constructor
      * Service times are exponentially distributed with mean 30

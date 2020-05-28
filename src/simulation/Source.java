@@ -46,12 +46,11 @@ public class Source implements CProcess {
         list = l;
         queue = q;
         name = n;
-        meanArrTime = 33;
         // put first event in list for initialization
-        double arrivalTime = name.contains("Corporate") ?
+        meanArrTime = name.contains("Corporate") ?
                 drawRandomExponential(Poisson.meanIATimeCorp(list.getTime())) :
                 drawRandomExponential(Poisson.meanIATimeCust(list.getTime()));
-        list.add(this, 0, arrivalTime); //target,type,time
+        list.add(this, 0, meanArrTime); //target,type,time
     }
 
     /**
@@ -111,6 +110,7 @@ public class Source implements CProcess {
         queue.giveProduct(p);
         // generate duration
         if (meanArrTime > 0) {
+            if (name.contains("Corporate")) num++;
             double duration = name.contains("Corporate") ?
                     drawRandomExponential(Poisson.meanIATimeCorp(list.getTime())) :
                     drawRandomExponential(Poisson.meanIATimeCust(list.getTime()));

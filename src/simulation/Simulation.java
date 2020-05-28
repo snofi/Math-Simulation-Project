@@ -38,10 +38,16 @@ public class Simulation {
         Machine con2 = new Machine(conQ, consumerSi, l, "Consumer 2");
         Machine con3 = new Machine(conQ, consumerSi, l, "Consumer 3");
         Machine con4 = new Machine(conQ, consumerSi, l, "Consumer 4");
-        Machine corp1 = new Machine(corpQ,corporateSi, l,"Corporate 1");
+        Machine con5 = new Machine(conQ, consumerSi, l, "Consumer 5");
+        Machine corp1 = new Machine(corpQ, corporateSi, l,"Corporate 1");
         Machine corp2 = new Machine(corpQ, corporateSi, l,"Corporate 2");
         Machine corp3 = new Machine(corpQ, corporateSi, l,"Corporate 3");
         Machine corp4 = new Machine(corpQ, corporateSi, l,"Corporate 4");
+        Machine corp5 = new Machine(corpQ, corporateSi, l,"Corporate 5");
+        Machine corp6 = new Machine(corpQ, corporateSi, l,"Corporate 6");
+        Machine corp7 = new Machine(corpQ, corporateSi, l,"Corporate 7");
+
+
 
         // start the eventlist
         l.start(1440); // 2000 is maximum time
