@@ -1,5 +1,7 @@
 package simulation;
 
+import java.util.ArrayList;
+
 /**
  * Machine in a factory
  *
@@ -38,7 +40,7 @@ public class Machine implements CProcess, ProductAcceptor {
     /**
      * Processing times (in case pre-specified)
      */
-    private double[] processingTimes;
+    private ArrayList<Double> processingTimes;
     /**
      * Processing time iterator
      */
@@ -94,7 +96,7 @@ public class Machine implements CProcess, ProductAcceptor {
      * @param n  The name of the machine
      * @param st service times
      */
-    public Machine(Queue q, Sink s, CEventList e, String n, double[] st) {
+    public Machine(Queue q, Sink s, CEventList e, String n, ArrayList<Double> st) {
         status = 'i';
         queue = q;
         sink = s;
@@ -185,8 +187,8 @@ public class Machine implements CProcess, ProductAcceptor {
             // set status to busy
             status = 'b';
         } else {
-            if (processingTimes.length > procCnt) {
-                eventlist.add(this, 0, eventlist.getTime() + processingTimes[procCnt]); //target,type,time
+            if (processingTimes.size()> procCnt) {
+                eventlist.add(this, 0, eventlist.getTime() + processingTimes.get(procCnt)); //target,type,time
                 // set status to busy
                 status = 'b';
                 procCnt++;

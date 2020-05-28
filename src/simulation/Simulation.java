@@ -6,6 +6,8 @@
 
 package simulation;
 
+import java.util.ArrayList;
+
 public class Simulation {
 
     public CEventList list;
@@ -32,17 +34,9 @@ public class Simulation {
         // A sink
         Sink consumerSi = new Sink("Sink Consumer");
         Sink corporateSi = new Sink("Sink Corporate");
-        int currentTime=1;
-        double consPerMin=0;
-        double corpPerMin =0;
+
         // A source
-        while(consPerMin==0 && corpPerMin==0){
-            consPerMin = posse.getConsumer(currentTime);
-            corpPerMin = posse.getCorporate(currentTime);
-            if(consPerMin==0 && corpPerMin==0){
-                currentTime++;
-            }
-        }
+        ArrayList<Double> corpArrival = Poisson.getCorpArrivalList(1,120);
 
 
 

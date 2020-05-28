@@ -97,7 +97,6 @@ public class Poisson {
                 double newDuration = Source.drawRandomExponential(corpPerMin);
                 list.add(newDuration);
 //                System.out.println(newDuration);
-                currentTime += newDuration;
             }
             if(corpPerMin==0){
                 currentTime+=1;

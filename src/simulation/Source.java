@@ -1,5 +1,7 @@
 package simulation;
 
+import java.util.ArrayList;
+
 /**
  * A source of products
  * This class implements CProcess so that it can execute events.
@@ -28,7 +30,7 @@ public class Source implements CProcess {
     /**
      * Interarrival times (in case pre-specified)
      */
-    private double[] interarrivalTimes;
+    private ArrayList<Double> interarrivalTimes;
     /**
      * Interarrival time iterator
      */
@@ -78,7 +80,7 @@ public class Source implements CProcess {
      * @param n  Name of object
      * @param ia interarrival times
      */
-    public Source(ProductAcceptor q, CEventList l, String n, double[] ia) {
+    public Source(ProductAcceptor q, CEventList l, String n, ArrayList<Double> ia) {
         list = l;
         queue = q;
         name = n;
@@ -86,7 +88,7 @@ public class Source implements CProcess {
         interarrivalTimes = ia;
         interArrCnt = 0;
         // put first event in list for initialization
-        list.add(this, 0, interarrivalTimes[0]); //target,type,time
+        list.add(this, 0, interarrivalTimes.get(0)); //target,type,time
     }
 
     public static double drawRandomExponential(double mean) {
@@ -115,8 +117,8 @@ public class Source implements CProcess {
             list.add(this, 0, tme + duration); //target,type,time
         } else {
             interArrCnt++;
-            if (interarrivalTimes.length > interArrCnt) {
-                list.add(this, 0, tme + interarrivalTimes[interArrCnt]); //target,type,time
+            if (interarrivalTimes.size() > interArrCnt) {
+                list.add(this, 0, tme + interarrivalTimes.get(interArrCnt)); //target,type,time
             } else {
                 list.stop();
             }
