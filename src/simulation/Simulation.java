@@ -23,7 +23,7 @@ public class Simulation {
         CEventList l = new CEventList();
         // A queue for the machine
         Queue conQ = new Queue();
-        Queue corpQcon = new Queue();
+        Queue corpQ = new Queue();
 
         // A sink
         Sink consumerSi = new Sink("Sink Consumer");
@@ -31,17 +31,18 @@ public class Simulation {
 
         // A source
         Source consumerSource = new Source(conQ, l,"Consumer Source");
-        Source corporateSourc1 = new Source(conQ, l,"Corporate1 Source");
-        Source corporateSource2 = new Source(corpQcon, l,"Corporate2 Source");
-
+        Source corporateSourc1 = new Source(corpQ, l,"Corporate Source");
 
         // A machine
-        Machine con1 = new Machine(conQ, consumerSi,l, "Consumer 1");
-        Machine con2 = new Machine(conQ, consumerSi,l, "Consumer 2");
-        Machine corp1 = new Machine(corpQcon,corporateSi,l,"Corporate 1");
-        Machine con4 = new Machine(conQ, consumerSi,l, "Consumer 1");
-        Machine con3 = new Machine(conQ, consumerSi,l, "Consumer 2");
-        Machine corp4 = new Machine(corpQcon,corporateSi,l,"Corporate 1");
+        Machine con1 = new Machine(conQ, consumerSi, l, "Consumer 1");
+        Machine con2 = new Machine(conQ, consumerSi, l, "Consumer 2");
+        Machine con3 = new Machine(conQ, consumerSi, l, "Consumer 3");
+        Machine con4 = new Machine(conQ, consumerSi, l, "Consumer 4");
+        Machine corp1 = new Machine(corpQ,corporateSi, l,"Corporate 1");
+        Machine corp2 = new Machine(corpQ, corporateSi, l,"Corporate 2");
+        Machine corp3 = new Machine(corpQ, corporateSi, l,"Corporate 3");
+        Machine corp4 = new Machine(corpQ, corporateSi, l,"Corporate 4");
+
         // start the eventlist
         l.start(1440); // 2000 is maximum time
     }
