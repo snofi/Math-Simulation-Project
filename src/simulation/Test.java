@@ -16,8 +16,8 @@ public class Test {
 
         System.out.println(Poisson.meanIATimeCorp(80));
         ArrayList<Double> corpList = Poisson.getCorpArrivalList(1, 60); // the first hour
-        for (Double i: corpList){
-            System.out.println(i);
-        }
+//        for (Double i: corpList){
+//            System.out.println(i);
+//        }
     }
 }

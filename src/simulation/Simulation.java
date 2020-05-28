@@ -42,14 +42,19 @@ public class Simulation {
 
 
         Source consumerSource = new Source(conQ,l,"Consumer Source", 9);
-        Source corporateSource = new Source(conQ,l,"Corporate Source", 78);
+        Source corporateSource = new Source(corpQcon,l,"Corporate Source", corpArrival);
 
 
 
         // A machine
         Machine con1 = new Machine(conQ, consumerSi,l, "Consumer 1");
         Machine con2 = new Machine(conQ, consumerSi,l, "Consumer 2");
+        Machine con3 = new Machine(conQ, consumerSi,l, "Consumer 3");
+        Machine con4 = new Machine(conQ, consumerSi,l, "Consumer 4");
         Machine corp1 = new Machine(corpQcon,corporateSi,l,"Corporate 1");
+        Machine corp2 = new Machine(corpQcon,corporateSi,l,"Corporate 2");
+        Machine corp3 = new Machine(corpQcon,corporateSi,l,"Corporate 3");
+
         // start the eventlist
         l.start(1440); // 2000 is maximum time
     }
