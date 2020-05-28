@@ -85,7 +85,15 @@ public class Poisson {
             lambda = 0.2;
         }
 
-        return 60/lambda;
+        return 1/lambda;
+    }
+
+    public static double meanIATimeCust(double currentTime) {
+        double lambda = (1.8 * Math.sin(((currentTime / 60.0) + 15.0) / 3.82) + 2.0);
+        lambda = Math.round(lambda * 100000);
+        lambda = lambda / 100000;
+
+        return 1/lambda;
     }
 
 }

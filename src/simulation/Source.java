@@ -93,8 +93,7 @@ public class Source implements CProcess {
         // draw a [0,1] uniform distributed number
         double u = Math.random();
         // Convert it into a exponentially distributed random variate with mean 33
-        double res = -mean * Math.log(u);
-        return res;
+        return -mean * Math.log(u);
     }
 
     @Override
@@ -109,7 +108,9 @@ public class Source implements CProcess {
         queue.giveProduct(p);
         // generate duration
         if (meanArrTime > 0) {
-            double duration = drawRandomExponential(meanArrTime);
+            double duration = name.contains("Corporate") ?
+                    drawRandomExponential(Poisson.meanIATimeCorp(list.getTime())) :
+                    drawRandomExponential(Poisson.meanIATimeCust(list.getTime()));
             // Create a new event in the eventlist
             list.add(this, 0, tme + duration); //target,type,time
         } else {
