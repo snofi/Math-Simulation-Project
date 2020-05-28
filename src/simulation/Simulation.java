@@ -20,17 +20,26 @@ public class Simulation {
      */
     public static void main(String[] args) {
     	// Create an eventlist
-	CEventList l = new CEventList();
-	// A queue for the machine
-	Queue q = new Queue();
-	// A source
-	Source s = new Source(q,l,"Source 1");
-	// A sink
-	Sink si = new Sink("Sink 1");
-	// A machine
-	Machine m = new Machine(q,si,l,"Machine 1");
-	// start the eventlist
-	l.start(2000); // 2000 is maximum time
+        CEventList l = new CEventList();
+        // A queue for the machine
+        Queue conQ = new Queue();
+        Queue corpQcon = new Queue();
+
+        // A sink
+        Sink consumerSi = new Sink("Sink Consumer");
+        Sink corporateSi = new Sink("Sink Corporate");
+
+        // A source
+        Source consumerSource = new Source(conQ,l,"Consumer Source", 30);
+        Source corporateSource = new Source(conQ,l,"Corporate Source", 60);
+        corporateSource = new Source(conQ,l,"Corporate Source", 300);
+
+
+        // A machine
+        Machine con1 = new Machine(conQ, consumerSi,l, "Consumer 1");
+        Machine con2 = new Machine(conQ, consumerSi,l, "Consumer 2");
+        Machine corp1 = new Machine(corpQcon,corporateSi,l,"Corporate 1");
+        // start the eventlist
+        l.start(1440); // 2000 is maximum time
     }
-    
 }
