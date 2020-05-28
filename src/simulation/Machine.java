@@ -46,7 +46,6 @@ public class Machine implements CProcess, ProductAcceptor {
      */
     private int procCnt;
 
-
     /**
      * Constructor
      * Service times are exponentially distributed with mean 30
@@ -132,7 +131,8 @@ public class Machine implements CProcess, ProductAcceptor {
         sink.giveProduct(product);
 
         // show all times (added - not in original code)
-        System.out.println(product.getTimes());
+        System.out.println(name + product.getEvents() + " at: " + product.getTimes());
+        System.out.println("Current time: " + eventlist.getTime());
 
         // if (tme >= 1414) {
         //	System.out.println(sink.getProductTimes());
@@ -180,7 +180,7 @@ public class Machine implements CProcess, ProductAcceptor {
     public void startProduction() {
         // generate duration
         if (meanProcTime > 0) {
-            double duration = drawRandomExponential(meanProcTime);
+            double duration = name.contains("Corporate") ? Normal.getCorporate() : Normal.getConsumer();
             // Create a new event in the eventlist
             double tme = eventlist.getTime();
             eventlist.add(this, 0, tme + duration); //target,type,time

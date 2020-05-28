@@ -96,7 +96,7 @@ public class Sink implements ProductAcceptor {
     public ArrayList<ArrayList<Double>> getProductTimes() {
         ArrayList<ArrayList<Double>> times = new ArrayList<>();
 
-        Product tmp = new Product();
+        Product tmp;
         for (int i = 0; i < products.size(); i++) {
             tmp = products.get(i);
             times.add(tmp.getTimes());
