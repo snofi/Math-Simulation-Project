@@ -18,7 +18,8 @@ public class Source implements CProcess {
     /**
      * Queue that buffers products for the machine
      */
-    private ProductAcceptor queue;
+    private Queue queue;
+    private Queue queue2=null;
     /**
      * Name of the source
      */
@@ -44,9 +45,20 @@ public class Source implements CProcess {
      * @param l The eventlist that is requested to construct events
      * @param n Name of object
      */
-    public Source(ProductAcceptor q, CEventList l, String n) {
+    public Source(Queue q, CEventList l, String n) {
         list = l;
         queue = q;
+        name = n;
+        // put first event in list for initialization
+        meanArrTime = name.contains("Corporate") ?
+                drawRandomExponential(Poisson.meanIATimeCorp(list.getTime())) :
+                drawRandomExponential(Poisson.meanIATimeCust(list.getTime()));
+        list.add(this, 0, meanArrTime); //target,type,time
+    }
+    public Source(Queue qCon, Queue qCorp, CEventList l, String n) {
+        list = l;
+        queue = qCon;
+        queue2 = qCorp;
         name = n;
         // put first event in list for initialization
         meanArrTime = name.contains("Corporate") ?
@@ -64,7 +76,7 @@ public class Source implements CProcess {
      * @param n Name of object
      * @param m Mean arrival time
      */
-    public Source(ProductAcceptor q, CEventList l, String n, double m) {
+    public Source(Queue q, CEventList l, String n, double m) {
         list = l;
         queue = q;
         name = n;
@@ -82,7 +94,7 @@ public class Source implements CProcess {
      * @param n  Name of object
      * @param ia interarrival times
      */
-    public Source(ProductAcceptor q, CEventList l, String n, ArrayList<Double> ia) {
+    public Source(Queue q, CEventList l, String n, ArrayList<Double> ia) {
         list = l;
         queue = q;
         name = n;
@@ -110,7 +122,12 @@ public class Source implements CProcess {
         // give arrived product to queue
         Product p = new Product();
         p.stamp(tme, "Creation", name);
-        queue.giveProduct(p);
+        if(queue2!=null && queue.getRequests().size()<1 && queue2.getRequests().size()>2){
+            queue2.giveProduct(p);
+        }
+        else{
+            queue.giveProduct(p);}
+
         // generate duration
         if (meanArrTime > 0) {
             double duration = name.contains("Corporate") ?

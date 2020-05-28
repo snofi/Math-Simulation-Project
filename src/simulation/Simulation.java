@@ -37,7 +37,7 @@ public class Simulation {
 
         // A source
 
-        Source consumerSource = new Source(conQ, l,"Consumer Source");
+        Source consumerSource = new Source(conQ, corpQ, l,"Consumer Source");
         Source corporateSourc1 = new Source(corpQ, l,"Corporate Source");
 
         // A machine
