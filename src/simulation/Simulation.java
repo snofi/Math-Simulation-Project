@@ -19,6 +19,10 @@ public class Simulation {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+
+        Poisson posse = new Poisson();
+        Normal normie = new Normal();
+
     	// Create an eventlist
         CEventList l = new CEventList();
         // A queue for the machine
@@ -28,11 +32,24 @@ public class Simulation {
         // A sink
         Sink consumerSi = new Sink("Sink Consumer");
         Sink corporateSi = new Sink("Sink Corporate");
-
+        int currentTime=1;
+        double consPerMin=0;
+        double corpPerMin =0;
         // A source
-        Source consumerSource = new Source(conQ,l,"Consumer Source", 30);
-        Source corporateSource = new Source(conQ,l,"Corporate Source", 60);
-        corporateSource = new Source(conQ,l,"Corporate Source", 300);
+        while(consPerMin==0 && corpPerMin==0){
+            consPerMin = posse.getConsumer(currentTime);
+            corpPerMin = posse.getCorporate(currentTime);
+            if(consPerMin==0 && corpPerMin==0){
+                currentTime++;
+            }
+        }
+
+
+
+
+        Source consumerSource = new Source(conQ,l,"Consumer Source", 9);
+        Source corporateSource = new Source(conQ,l,"Corporate Source", 78);
+
 
 
         // A machine

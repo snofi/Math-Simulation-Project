@@ -66,7 +66,7 @@ public class Source implements CProcess {
         name = n;
         meanArrTime = m;
         // put first event in list for initialization
-        list.add(this, 0, drawRandomExponential(Poisson.meanIATimeCorp(list.getTime()))); //target,type,time
+        list.add(this, 0, drawRandomExponential(m)); //target,type,time
     }
 
     /**
@@ -90,6 +90,7 @@ public class Source implements CProcess {
     }
 
     public static double drawRandomExponential(double mean) {
+//        mean = 60/mean; // since we're using minute already we dont need this line
         // draw a [0,1] uniform distributed number
         double u = Math.random();
         // Convert it into a exponentially distributed random variate with mean 33
