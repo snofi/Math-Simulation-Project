@@ -4,23 +4,33 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Poisson {
-    public static void main(String[] args) {
-//        Example time in minutes (180 is min, 900 is max)
-        double tme = 900;
+//        Time is in minutes (180 is min, 900 is max)
+    public int getConsumer(double currentTime){
 //        calculating lambda based of sinusoid
-        double lambda = (1.8* Math.sin(((tme/60)+15)/3.82)+2);
+        double lambda = (1.8* Math.sin(((currentTime/60.0)+15.0)/3.82)+2.0);
 //        rounding lambda to hundred thousandths place
         lambda = Math.round(lambda * 100000);
         lambda = lambda / 100000;
 //        generating random from uniform [0,1]
         double u = Math.random();
-//        printing out previous values
-        System.out.println("u = " + u);
-        System.out.println("lambda = " + lambda);
-        System.out.println("inverse cdf = " + icdf(lambda, u));
+        return icdf(lambda, u);
     }
 
-    public static double factorial(double n){
+    public int getCorporate(double currentTime){
+//        Between 8 am and 6 pm, rate is 1 per minute
+//        Between 6 pm and 8 am, rate is 0.2 per minute.
+        double lambda;
+        currentTime = currentTime / 60;
+        if ((currentTime > 8) && (currentTime < 18)){
+            lambda = 1;
+        } else {
+            lambda = 0.2;
+        }
+        double u = Math.random();
+        return icdf(lambda, u);
+    }
+
+    private static double factorial(double n){
         if (n <= 1) {
             return 1;
         }
@@ -33,7 +43,7 @@ public class Poisson {
         return ans;
     }
 
-    public static ArrayList<Integer> poissonInv(double lambda, double u, int n, ArrayList<Integer> nList){
+    private static ArrayList<Integer> poissonInv(double lambda, double u, int n, ArrayList<Integer> nList){
         double ans = Math.pow(Math.E, (lambda * -1));
         double sum = 0;
         for (int m=0; m<n; m++){
@@ -50,7 +60,7 @@ public class Poisson {
         return nList;
     }
 
-    public static int icdf(double lambda, double u){
+    private static int icdf(double lambda, double u){
         ArrayList<Integer> nList = new ArrayList<>();
         int n = (int) Math.ceil(100 * lambda);
         if (n > 171){n = 171;}
