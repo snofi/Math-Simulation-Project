@@ -130,16 +130,6 @@ public class Machine implements CProcess, ProductAcceptor {
 
         sink.giveProduct(product);
 
-        // show all times (added - not in original code)
-        System.out.println(name + product.getEvents() + " at: " + product.getTimes());
-        System.out.println("Current time: " + eventlist.getTime());
-
-        // if (tme >= 1414) {
-        //	System.out.println(sink.getProductTimes());
-        //}
-
-        System.out.println("Avg wait: " + sink.getAverageWaitTime());
-
         product = null;
         // set machine status to idle
         status = 'i';
