@@ -26,8 +26,8 @@ public class Simulation {
         Normal normie = new Normal();
 
 //      three shifts (6am – 2pm, 2pm – 10pm, 10pm – 6am)
-        Shift firstShift = new Shift(6, 14, 5, 5);
-        Shift secondShift = new Shift(14, 22, 5, 6);
-        Shift thirdShift = new Shift(22, 6, 2, 2);
+        Shift firstShift = new Shift(6, 14, 6, 6);
+        Shift secondShift = new Shift(14, 22, 6, 6);
+        Shift thirdShift = new Shift(22, 6, 2, 3);
     }
 }

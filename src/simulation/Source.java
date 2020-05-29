@@ -19,7 +19,7 @@ public class Source implements CProcess {
      * Queue that buffers products for the machine
      */
     private Queue queue;
-    private Queue queue2=null;
+    private Queue queue2 = null;
     /**
      * Name of the source
      */
@@ -55,6 +55,7 @@ public class Source implements CProcess {
                 drawRandomExponential(Poisson.meanIATimeCust(list.getTime()));
         list.add(this, 0, meanArrTime + list.getTime()); //target,type,time
     }
+
     public Source(Queue qCon, Queue qCorp, CEventList l, String n) {
         list = l;
         queue = qCon;
@@ -122,11 +123,11 @@ public class Source implements CProcess {
         // give arrived product to queue
         Product p = new Product();
         p.stamp(tme, "Creation", name);
-        if(queue2!=null && queue.getRequests().size()<1 && queue2.getRequests().size()>2){
+        if (queue2 != null && queue.getRequests().size() > 8 && queue2.getRequests().size() < 2) {
             queue2.giveProduct(p);
+        } else {
+            queue.giveProduct(p);
         }
-        else{
-            queue.giveProduct(p);}
 
         // generate duration
         if (meanArrTime > 0) {
