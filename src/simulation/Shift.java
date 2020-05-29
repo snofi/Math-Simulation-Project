@@ -44,9 +44,26 @@ public class Shift {
         if (endTime > 24){
             endTime -= 24;
         }
-        System.out.println("End of shift (" + startTime + ":00 - " + endTime + ":00)");
-        System.out.println("Consumer average wait time: " + consumerSi.getAverageWaitTime());
-        System.out.println("Corporate average wait time: " + corporateSi.getAverageWaitTime());
+//        System.out.println("End of shift (" + startTime + ":00 - " + endTime + ":00)");
+//        System.out.println("Consumer average wait time: " + consumerSi.getAverageWaitTime());
+//        System.out.println("Corporate average wait time: " + corporateSi.getAverageWaitTime());
+
+//      90% of the consumers should be assisted within 5 minutes 95% within 10 minutes.
+        double conWait5 = consumerSi.getWaitPercent(5);
+        double conWait10 = consumerSi.getWaitPercent(10);
+        System.out.println("Percentage of consumer wait times > 5 mins = " + conWait5);
+        System.out.println("con5 Satisfied = " + (conWait5 < (1 - 0.90)));
+        System.out.println("Percentage of consumer await times > 10 mins = " + conWait10);
+        System.out.println("con10 Satisfied = " + (conWait10 < (1 - 0.95)));
+
+//      For corporate clients, 95% should be assisted within 3 minutes; 99% within 7 minutes
+        double corpWait3 = corporateSi.getWaitPercent(3);
+        double corpWait7 = corporateSi.getWaitPercent(7);
+        System.out.println("Percentage of corporate wait times > 3 mins = " + corpWait3);
+        System.out.println("corp3 Satisfied = " + (corpWait3 < (1 - 0.95)));
+        System.out.println("Percentage of corporate wait times > 7 mins = " + corpWait7);
+        System.out.println("corp7 Satisfied = " + (corpWait7 < (1- 0.99)));
+
         System.out.println("");
     }
 }
