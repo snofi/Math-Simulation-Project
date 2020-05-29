@@ -34,6 +34,12 @@ public class CEventList implements CProcess {
         events = new ArrayList<>();
     }
 
+    public CEventList(int startTime) {
+        currentTime = startTime;
+        stopFlag = false;
+        events = new ArrayList<>();
+    }
+
     /**
      * Method for the construction of a new event.
      *

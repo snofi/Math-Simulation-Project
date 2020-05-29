@@ -130,6 +130,8 @@ public class Machine implements CProcess, ProductAcceptor {
 
         sink.giveProduct(product);
 
+//        System.out.println(product.getTimes());
+
         product = null;
         // set machine status to idle
         status = 'i';

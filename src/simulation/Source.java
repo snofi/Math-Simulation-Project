@@ -53,7 +53,7 @@ public class Source implements CProcess {
         meanArrTime = name.contains("Corporate") ?
                 drawRandomExponential(Poisson.meanIATimeCorp(list.getTime())) :
                 drawRandomExponential(Poisson.meanIATimeCust(list.getTime()));
-        list.add(this, 0, meanArrTime); //target,type,time
+        list.add(this, 0, meanArrTime + list.getTime()); //target,type,time
     }
     public Source(Queue qCon, Queue qCorp, CEventList l, String n) {
         list = l;
@@ -64,7 +64,7 @@ public class Source implements CProcess {
         meanArrTime = name.contains("Corporate") ?
                 drawRandomExponential(Poisson.meanIATimeCorp(list.getTime())) :
                 drawRandomExponential(Poisson.meanIATimeCust(list.getTime()));
-        list.add(this, 0, meanArrTime); //target,type,time
+        list.add(this, 0, meanArrTime + list.getTime()); //target,type,time
     }
 
     /**
